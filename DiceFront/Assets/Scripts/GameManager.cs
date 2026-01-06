@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
         {
             TurnUI.Instance.UpdateTurn(currentPlayer);
         }
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.SelectTerritory(null);
+        }
     }
 
     
@@ -33,6 +37,9 @@ public class GameManager : MonoBehaviour
         GrantDice(endingPlayer);
         currentPlayer = (currentPlayer + 1) % playerCount;
         TurnUI.Instance.UpdateTurn(currentPlayer);
+        InputManager.Instance.selected.SetSelected(false);
+        InputManager.Instance.HighlightAttackOptions(false);
+        InputManager.Instance.selected = null;
     }
 
     void GrantDice(int playerId)
@@ -56,4 +63,18 @@ public class GameManager : MonoBehaviour
             t.UpdateVisuals();
         }
     }
+
+    public int GetScore(int playerId)
+    {
+        int score = 0;
+        foreach (var t in territories)
+        {
+            if (t.ownerId == playerId)
+            {
+                score += Mathf.RoundToInt(Mathf.Pow(t.diceCount, 0.9f));
+            }
+        }
+        return score;
+    }
+
 }

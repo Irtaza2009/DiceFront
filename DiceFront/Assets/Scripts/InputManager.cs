@@ -4,7 +4,7 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
 
-    Territory selected;
+    public Territory selected;
 
     void Awake()
     {
@@ -55,7 +55,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    void HighlightAttackOptions(bool on)
+    public void HighlightAttackOptions(bool on)
     {
         if (selected == null) return;
 
