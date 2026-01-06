@@ -27,7 +27,7 @@ public class TurnUI : MonoBehaviour
     {
         // Turn text
         turnText.text = $"Player {playerId + 1} Turn";
-        turnText.color = playerId == 0 ? Color.blue : Color.red;
+        turnText.color = playerId == 0 ? Colors.Blue : Colors.Red;
     }
 
     void UpdateScores()
@@ -38,12 +38,12 @@ public class TurnUI : MonoBehaviour
         int p1Score = GameManager.Instance.GetScore(1);
         int neutralScore = GameManager.Instance.GetScore(-1);
 
-        player0ScoreText.text = $"Player 1: {p0Score}";
-        player1ScoreText.text = $"Player 2: {p1Score}";
-        neutralScoreText.text = $"Neutral: {neutralScore}";
+        player0ScoreText.text = $"{p0Score}";
+        player1ScoreText.text = $"{p1Score}";
+        neutralScoreText.text = $"{neutralScore}";
 
-        player0ScoreText.color = Color.blue;
-        player1ScoreText.color = Color.red;
-        neutralScoreText.color = Color.gray;
+        player0ScoreText.color = Colors.Blue;
+        player1ScoreText.color = Colors.Red;
+        neutralScoreText.color = Colors.Grey;
     }
 }

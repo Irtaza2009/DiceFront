@@ -64,7 +64,11 @@ public class InputManager : MonoBehaviour
             if (neighbor.ownerId != selected.ownerId)
             {
                 neighbor.GetComponent<SpriteRenderer>().color =
-                    on ? Color.magenta : neighbor.GetBaseColor();
+                    on
+                        ? (selected.ownerId == 0
+                            ? Colors.RedBlink
+                            : Colors.BlueBlink)
+                        : neighbor.GetBaseColor();
             }
         }
     }

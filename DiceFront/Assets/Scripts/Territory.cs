@@ -17,10 +17,7 @@ public class Territory : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        baseColor = 
-            ownerId == 0 ? Color.blue :
-            ownerId == 1 ? Color.red :
-            Color.gray;
+        baseColor = GetBaseColor();
         UpdateVisuals();
     }
 
@@ -52,15 +49,28 @@ public class Territory : MonoBehaviour
 
     public void SetSelected(bool selected)
     {
-        spriteRenderer.color = selected ? Color.yellow : baseColor;
+        if (!selected)
+        {
+            spriteRenderer.color = baseColor;
+            return;
+        }
+        spriteRenderer.color = ownerId == 0
+            ? Colors.BlueSelected
+            : ownerId == 1
+                ? Colors.RedSelected
+                : Colors.GreySelected;
     }
 
     public Color GetBaseColor()
     {
-        return ownerId == 0 ? Color.blue :
-            ownerId == 1 ? Color.red :
-            Color.gray;
+        return ownerId switch
+        {
+            0 => Colors.Blue,
+            1 => Colors.Red,
+            _ => Colors.Grey
+        };
     }
+
 
 
 }
