@@ -21,22 +21,33 @@ public class Territory : MonoBehaviour
             ownerId == 0 ? Color.blue :
             ownerId == 1 ? Color.red :
             Color.gray;
+        UpdateVisuals();
     }
 
     void Update()
     {
-        diceText.text = diceCount.ToString();
-        spriteRenderer.color = GetBaseColor();
+        if (diceText != null)
+        {
+            diceText.text = diceCount.ToString();
+        }
+    }
+
+    public void UpdateVisuals()
+    {
+        baseColor = GetBaseColor();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = baseColor;
+        }
+        if (diceText != null)
+        {
+            diceText.text = diceCount.ToString();
+        }
     }
 
     public bool CanAttack(Territory target)
     {
         return neighbors.Contains(target) && diceCount > 1;
-    }
-
-    void OnMouseDown()
-    {
-        InputManager.Instance.SelectTerritory(this);
     }
 
     public void SetSelected(bool selected)

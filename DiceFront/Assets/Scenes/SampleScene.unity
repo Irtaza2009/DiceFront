@@ -256,6 +256,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &573218436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 573218438}
+  - component: {fileID: 573218437}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &573218437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573218436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f059d2dd89fcc49a0b7ed8e3df45c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!4 &573218438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573218436}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.13102, y: -0.44808, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -527,7 +571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -643,9 +687,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794509e50e65c62428e9bebb976bff84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  ownerId: 0
-  diceCount: 1
-  neighbors: []
+  ownerId: 1
+  diceCount: 3
+  neighbors:
+  - {fileID: 974064571}
+  - {fileID: 1991021587}
   diceText: {fileID: 624444817}
 --- !u!61 &935802775
 BoxCollider2D:
@@ -918,9 +964,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794509e50e65c62428e9bebb976bff84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  ownerId: 1
-  diceCount: 1
-  neighbors: []
+  ownerId: 0
+  diceCount: 4
+  neighbors:
+  - {fileID: 935802774}
+  - {fileID: 1991021587}
   diceText: {fileID: 924910891}
 --- !u!1 &1197798205
 GameObject:
@@ -1056,7 +1104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1171,7 +1219,6 @@ GameObject:
   - component: {fileID: 1331657620}
   - component: {fileID: 1331657623}
   - component: {fileID: 1331657622}
-  - component: {fileID: 1331657621}
   - component: {fileID: 1331657624}
   m_Layer: 0
   m_Name: GameManager
@@ -1195,18 +1242,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1331657621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331657619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47f059d2dd89fcc49a0b7ed8e3df45c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!114 &1331657622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1400,7 +1435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1619,8 +1654,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   ownerId: -1
-  diceCount: 1
-  neighbors: []
+  diceCount: 4
+  neighbors:
+  - {fileID: 974064571}
+  - {fileID: 935802774}
   diceText: {fileID: 1260396330}
 --- !u!61 &1991021588
 BoxCollider2D:
@@ -1933,5 +1970,6 @@ SceneRoots:
   - {fileID: 935802777}
   - {fileID: 1991021590}
   - {fileID: 1331657620}
+  - {fileID: 573218438}
   - {fileID: 2025226425}
   - {fileID: 2026047384}

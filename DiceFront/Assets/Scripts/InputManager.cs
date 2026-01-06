@@ -11,6 +11,25 @@ public class InputManager : MonoBehaviour
         Instance = this;
     }
 
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+
+            if (hit.collider != null)
+            {
+                Territory t = hit.collider.GetComponent<Territory>();
+                if (t != null)
+                {
+                    Debug.Log("Clicked: " + t.name);
+                    SelectTerritory(t);
+                }
+            }
+        }
+    }
+
     public void SelectTerritory(Territory t)
     {
         if (selected == null)

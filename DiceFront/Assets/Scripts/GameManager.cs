@@ -13,7 +13,14 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        TurnUI.Instance?.UpdateTurn(currentPlayer);
+    }
+
+    void Start()
+    {
+        if (TurnUI.Instance != null)
+        {
+            TurnUI.Instance.UpdateTurn(currentPlayer);
+        }
     }
 
     
@@ -44,6 +51,7 @@ public class GameManager : MonoBehaviour
             if (t.diceCount < Territory.MAX_DICE)
             {
                 t.diceCount++;
+                t.UpdateVisuals();
             }
         }
     }
