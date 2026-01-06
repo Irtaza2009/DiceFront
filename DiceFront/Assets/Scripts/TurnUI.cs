@@ -14,5 +14,7 @@ public class TurnUI : MonoBehaviour
     public void UpdateTurn(int playerId)
     {
         turnText.text = $"Player {playerId + 1} Turn";
+        
+        turnText.color = playerId == 0 ? Color.blue : Color.red;
     }
 }

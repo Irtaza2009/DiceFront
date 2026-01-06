@@ -4,29 +4,34 @@ public static class CombatResolver
 {
     public static bool Resolve(Territory attacker, Territory defender)
     {
-        int aRoll = RollSum(attacker.diceCount);
-        int dRoll = RollSum(defender.diceCount);
+        int aDice = attacker.diceCount;
+        int dDice = defender.diceCount;
+
+        int aRoll = RollSum(aDice);
+        int dRoll = RollSum(dDice);
+
         Debug.Log(
-            $"ATTACK: {attacker.name} ({attacker.diceCount}) → " +
-            $"{defender.name} ({defender.diceCount})"
+            $"ATTACK {attacker.name} ({aDice}) [{aRoll}] → " +
+            $"{defender.name} ({dDice}) [{dRoll}]"
         );
 
-
+        // Defender wins ties
         if (aRoll > dRoll)
         {
             defender.ownerId = attacker.ownerId;
-            defender.diceCount = attacker.diceCount - 1;
+
+            defender.diceCount = aDice - 1;
             attacker.diceCount = 1;
-            defender.UpdateVisuals();
-            attacker.UpdateVisuals();
-            return true;
         }
         else
         {
-            attacker.diceCount = Mathf.Max(1, attacker.diceCount - 2);
-            attacker.UpdateVisuals();
-            return false;
+            attacker.diceCount = 1;
         }
+
+        attacker.UpdateVisuals();
+        defender.UpdateVisuals();
+
+        return aRoll > dRoll;
     }
 
     static int RollSum(int dice)

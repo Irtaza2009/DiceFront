@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        territories = new List<Territory>(FindObjectsOfType<Territory>());
+        Debug.Log($"Registered {territories.Count} territories.");
+        
         if (TurnUI.Instance != null)
         {
             TurnUI.Instance.UpdateTurn(currentPlayer);
@@ -26,33 +29,31 @@ public class GameManager : MonoBehaviour
     
     public void EndTurn()
     {
-        GrantDice(currentPlayer);
+        int endingPlayer = currentPlayer;
+        GrantDice(endingPlayer);
         currentPlayer = (currentPlayer + 1) % playerCount;
         TurnUI.Instance.UpdateTurn(currentPlayer);
     }
 
     void GrantDice(int playerId)
     {
-        int owned = 0;
-        foreach (var territory in territories)
-        {
-            if (territory.ownerId == playerId)
-            {
-                owned++;
-            }
-        }
-        int diceToGive = Mathf.Max(1, owned / 2);
-
-        // random placement for now
         List<Territory> ownedTerritories = territories.FindAll(t => t.ownerId == playerId);
+
+        if (ownedTerritories.Count == 0)
+        {
+            Debug.Log($"Player {playerId} owns no territories, skipping dice grant.");
+            return;
+        }
+        int diceToGive = Mathf.Max(1, ownedTerritories.Count / 2);
+
         for (int i = 0; i < diceToGive; i++)
         {
-            var t = ownedTerritories[Random.Range(0, ownedTerritories.Count)];
-            if (t.diceCount < Territory.MAX_DICE)
-            {
-                t.diceCount++;
-                t.UpdateVisuals();
-            }
+            var candidates = ownedTerritories.FindAll(t => t.diceCount < Territory.MAX_DICE);
+            if (candidates.Count == 0) break;
+
+            var t = candidates[Random.Range(0, candidates.Count)];
+            t.diceCount++;
+            t.UpdateVisuals();
         }
     }
 }
