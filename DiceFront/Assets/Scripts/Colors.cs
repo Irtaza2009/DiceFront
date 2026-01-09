@@ -30,4 +30,5 @@ public static class Colors
         ColorUtility.TryParseHtmlString(hex, out var c);
         return c;
     }
-}
+} 
+
