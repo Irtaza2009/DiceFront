@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   ownerId: 1
-  diceCount: 3
+  diceCount: 4
   neighbors:
   - {fileID: 1183654295}
   - {fileID: 1823858428}
@@ -739,7 +739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   ownerId: 1
-  diceCount: 3
+  diceCount: 4
   neighbors:
   - {fileID: 1308245967}
   - {fileID: 1991021587}
@@ -3325,7 +3325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   ownerId: 1
-  diceCount: 3
+  diceCount: 4
   neighbors:
   - {fileID: 974064571}
   - {fileID: 500624703}
