@@ -46,4 +46,17 @@ public class TurnUI : MonoBehaviour
         player1ScoreText.color = Colors.Red;
         neutralScoreText.color = Colors.Grey;
     }
+
+    public void EndTurnButton()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySelectSFX();
+        }
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.EndTurn();
+        }
+    }
 }

@@ -43,6 +43,12 @@ public class InputManager : MonoBehaviour
                 selected = t;
                 selected.SetSelected(true);
                 HighlightAttackOptions(true);
+
+                // Play select sound
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlaySelectSFX();
+                }
             }
         }
         else

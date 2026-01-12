@@ -15,23 +15,44 @@ public static class CombatResolver
             $"{defender.name} ({dDice}) [{dRoll}]"
         );
 
+        // Play dice roll sound
+        if (AudioManager.Instance != null)
+        {
+           // removing dice roll sfx for now, will add it back later when I add dice roll panel
+           // AudioManager.Instance.PlayDiceRollSFX();
+        }
+
         // Defender wins ties
-        if (aRoll > dRoll)
+        bool attackerWins = aRoll > dRoll;
+
+        if (attackerWins)
         {
             defender.ownerId = attacker.ownerId;
 
             defender.diceCount = aDice - 1;
             attacker.diceCount = 1;
+
+            // Play win sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayWinSFX();
+            }
         }
         else
         {
             attacker.diceCount = 1;
+
+            // Play lose sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayLoseSFX();
+            }
         }
 
         attacker.UpdateVisuals();
         defender.UpdateVisuals();
 
-        return aRoll > dRoll;
+        return attackerWins;
     }
 
     static int RollSum(int dice)
