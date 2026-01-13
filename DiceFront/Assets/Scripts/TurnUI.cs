@@ -25,9 +25,16 @@ public class TurnUI : MonoBehaviour
 
     public void UpdateTurn(int playerId)
     {
-        // Turn text
-        turnText.text = $"Player {playerId + 1} Turn";
-        turnText.color = playerId == 0 ? Colors.Blue : Colors.Red;
+        if (AIController.Instance == null)
+        {
+            turnText.text = $"Player {playerId + 1} Turn";
+            turnText.color = playerId == 0 ? Colors.Blue : Colors.Red;
+        }
+        else
+        {
+            turnText.text = playerId == 0 ? "Your Turn" : "AI Turn";
+            turnText.color = playerId == 0 ? Colors.Blue : Colors.Red;
+        }
     }
 
     void UpdateScores()
@@ -49,11 +56,6 @@ public class TurnUI : MonoBehaviour
 
     public void EndTurnButton()
     {
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.PlaySelectSFX();
-        }
-
         if (GameManager.Instance != null)
         {
             GameManager.Instance.EndTurn();

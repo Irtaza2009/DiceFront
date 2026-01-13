@@ -38,9 +38,22 @@ public class GameManager : MonoBehaviour
         GrantDice(endingPlayer);
         currentPlayer = (currentPlayer + 1) % playerCount;
         TurnUI.Instance.UpdateTurn(currentPlayer);
-        InputManager.Instance.selected.SetSelected(false);
+        if (InputManager.Instance.selected != null)
+        {
+            InputManager.Instance.selected.SetSelected(false);
+        }
         InputManager.Instance.HighlightAttackOptions(false);
         InputManager.Instance.selected = null;
+
+        if (currentPlayer == 1 && AIController.Instance != null)
+        {
+            AIController.Instance.StartAITurn();
+        }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySelectSFX();
+        }
     }
 
     void GrantDice(int playerId)

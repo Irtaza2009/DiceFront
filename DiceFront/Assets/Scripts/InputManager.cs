@@ -1,14 +1,10 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
 
     public Territory selected;
-    Coroutine blinkCoroutine;
-    List<Territory> highlightedTerritories = new List<Territory>();
 
     void Awake()
     {
@@ -30,7 +26,7 @@ public class InputManager : MonoBehaviour
                     Debug.Log("Clicked: " + t.name);
                     SelectTerritory(t);
                 }
-            }
+            } 
         }
     }
 
@@ -69,60 +65,14 @@ public class InputManager : MonoBehaviour
     {
         if (selected == null) return;
 
-        if (blinkCoroutine != null)
-        {
-            StopCoroutine(blinkCoroutine);
-            blinkCoroutine = null;
-        }
-
-        highlightedTerritories.Clear();
+        Color blinkColor = selected.ownerId == 0 ? Colors.RedBlink : Colors.BlueBlink;
 
         foreach (var neighbor in selected.neighbors)
         {
             if (neighbor.ownerId != selected.ownerId)
             {
-                if (!on)
-                {
-                    neighbor.GetComponent<SpriteRenderer>().color = neighbor.GetBaseColor();
-                }
-                else
-                {
-                    highlightedTerritories.Add(neighbor);
-                }
+                neighbor.GetComponent<SpriteRenderer>().color = on ? blinkColor : neighbor.GetBaseColor();
             }
-        }
-
-        if (on && highlightedTerritories.Count > 0)
-        {
-            blinkCoroutine = StartCoroutine(BlinkTerritories());
-        }
-    }
-
-    IEnumerator BlinkTerritories()
-    {
-        Color blinkColor = selected.ownerId == 0 ? Colors.RedBlink : Colors.BlueBlink;
-
-        while (true)
-        {
-            foreach (var territory in highlightedTerritories)
-            {
-                if (territory != null)
-                {
-                    territory.GetComponent<SpriteRenderer>().color = blinkColor;
-                }
-            }
-
-            yield return new WaitForSeconds(0.5f);
-
-            foreach (var territory in highlightedTerritories)
-            {
-                if (territory != null)
-                {
-                    territory.GetComponent<SpriteRenderer>().color = territory.GetBaseColor();
-                }
-            }
-
-            yield return new WaitForSeconds(0.5f);
         }
     }
 
