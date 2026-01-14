@@ -92,4 +92,23 @@ public class GameManager : MonoBehaviour
         return score;
     }
 
+    public void CheckForWin()
+    {
+        int winner = -2; // unknown
+
+        foreach (var t in territories)
+        {
+            if (t.ownerId < 0) return; // if neutral still exists, continue
+
+            if (winner == -2)
+                winner = t.ownerId;
+            else if (t.ownerId != winner)
+                return; // if multiple owners, game continues
+        }
+
+        // One owner controls all
+        WinScreen.Instance.ShowWinner(winner);
+    }
+
+
 }

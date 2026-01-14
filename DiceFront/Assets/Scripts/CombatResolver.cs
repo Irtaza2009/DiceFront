@@ -49,6 +49,8 @@ public static class CombatResolver
 
                 attacker.UpdateVisuals();
                 defender.UpdateVisuals();
+
+                GameManager.Instance.CheckForWin();
             }
         );
 
