@@ -30,6 +30,12 @@ public class AIController : MonoBehaviour
 
         while (true)
         {
+            // Wait if combat is active
+            while (GameManager.Instance.isCombatActive)
+            {
+                yield return null;
+            }
+
             var attack = FindBestAttack();
 
             if (attack.from == null)
@@ -46,6 +52,13 @@ public class AIController : MonoBehaviour
 
             // ATTACK
             CombatResolver.Resolve(attack.from, attack.to);
+            
+            // Wait for combat to finish
+            while (GameManager.Instance.isCombatActive)
+            {
+                yield return null;
+            }
+            
             yield return new WaitForSeconds(betweenAttacksDelay);
 
             // Clear selection properly

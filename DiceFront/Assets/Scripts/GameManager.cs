@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     public int currentPlayer = 0;
     public int playerCount = 2;
+    public bool isCombatActive = false;
 
     public List<Territory> territories = new List<Territory>();
     
