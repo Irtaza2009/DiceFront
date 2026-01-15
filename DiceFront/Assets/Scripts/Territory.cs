@@ -44,7 +44,7 @@ public class Territory : MonoBehaviour
 
     public bool CanAttack(Territory target)
     {
-        return neighbors.Contains(target) && diceCount > 1;
+        return neighbors.Contains(target) && diceCount > 1 && target.ownerId != ownerId;
     }
 
     public void SetSelected(bool selected)
