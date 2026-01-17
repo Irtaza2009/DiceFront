@@ -26,6 +26,22 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Escape pressed");
+            if (WinScreen.Instance.pauseMenu.activeSelf)
+            {
+                WinScreen.Instance.ResumeGame();
+            }
+            else
+            {
+                WinScreen.Instance.PauseGame();
+            }
+        }
+    }
+
     public void PlayWinSFX()
     {
         PlayClip(winSFX);
