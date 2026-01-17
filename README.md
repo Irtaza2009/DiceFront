@@ -11,8 +11,10 @@ A submission for [milkyway](https://milkyway.hackclub.com/)!!
 
 You can play against **AI**, or against a **friend**!!
 
+<!-- 
 ## Demo
 []()
+ -->
 
 ## Controls
 
@@ -22,7 +24,7 @@ You can play against **AI**, or against a **friend**!!
 
 - Click an adjacent enemy territory to attack
 
-- End Turn to let the AI make its move
+- End Turn to let the AI, or the second player, make its move
 
 |      Input       |       Action     |
 |------------------|------------------|
