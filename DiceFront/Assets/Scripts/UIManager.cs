@@ -22,4 +22,24 @@ public class UIManager : MonoBehaviour
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
+
+    public void OnPressGuideButton()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySelectSFX();
+        }
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+    }
+
+    public void OnPressBackToMenuButton()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySelectSFX();
+        }
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
 }
