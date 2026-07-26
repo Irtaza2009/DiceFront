@@ -1,5 +1,7 @@
 # DiceFront
 
+<img width="1677" height="944" alt="chrome_ZwN8GTF2Sr" src="https://github.com/user-attachments/assets/03181fb5-226b-4e7c-9891-cb743ffa8d51" />
+
 A submission for [milkyway](https://milkyway.hackclub.com/)!!
 
 **Play at:** https://irtaza.itch.io/dicefront
